@@ -7,4 +7,12 @@ TodoModel.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Todo List API")
 
+@app.get("/health", tags=["Health"])
+def health_check():
+    return {
+        "status": "ok",
+        "service": "todo-list-api"
+    }
+
+
 app.include_router(todo.router)
